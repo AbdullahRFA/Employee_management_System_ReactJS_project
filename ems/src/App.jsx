@@ -1,11 +1,12 @@
 import React from 'react';
 import "./App.css"
+import Login from './components/Auth/Login';
 
 function App(){
   return(
-    <div>
-        <h1>Employee Management System</h1>
-    </div>
+    <>
+        <Login />
+    </>
   )
 }
 export default App
