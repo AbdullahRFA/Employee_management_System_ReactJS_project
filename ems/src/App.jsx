@@ -7,9 +7,9 @@ import AdminDashboard from "./components/Dashboard/AdminDashboard"
 function App(){
   return(
     <>
-        {/* <Login /> */}
+        <Login />
         {/* <EmployeDashboard /> */}
-        <AdminDashboard />
+        {/* <AdminDashboard /> */}
     </>
   )
 }
