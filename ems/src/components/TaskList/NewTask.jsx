@@ -2,41 +2,22 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../../context/AuthProvider'
 
 const NewTask = ({ data, loggedUser }) => {
-    const [userData, setUserData] = useContext(AuthContext)
-
-    const updateStatus = (status) => {
-        const updatedEmployees = userData.employees.map(emp => {
-            if (emp.email === loggedUser.email) {
-                emp.tasks = emp.tasks.map(task => {
-                    if (task.taskTitle === data.taskTitle) {
-                        return status === 'accept' 
-                            ? { ...task, newTask: false, active: true } 
-                            : { ...task, newTask: false, failed: true };
-                    }
-                    return task;
-                });
-            }
-            return emp;
-        });
-
-        setUserData({ ...userData, employees: updatedEmployees });
-        localStorage.setItem('employees', JSON.stringify(updatedEmployees));
-    }
+    // Destructure the update function from context
+    const [,, updateTaskStatus] = useContext(AuthContext)
 
     return (
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-blue-400 rounded-xl'>
+        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-blue-400 rounded-xl shadow-xl hover:scale-[1.02] transition-transform'>
             <div className='flex justify-between items-center'>
-                <span className='bg-red-600 text-sm px-3 py-1 rounded font-bold'>{data.category}</span>
+                <span className='bg-red-600 text-xs px-3 py-1 rounded-full font-bold uppercase'>{data.category}</span>
                 <h4 className='text-sm font-semibold'>{data.taskDate}</h4>
             </div>
             <h2 className='mt-5 text-2xl font-bold'>{data.taskTitle}</h2>
             <p className='text-sm mt-2 leading-tight h-24 overflow-auto'>{data.taskDescription}</p>
             <div className='flex justify-between mt-6 gap-2'>
-                <button onClick={() => updateStatus('accept')} className='bg-green-600 w-full py-2 text-sm rounded-lg font-bold hover:bg-green-700'>Accept</button>
-                <button onClick={() => updateStatus('reject')} className='bg-red-600 w-full py-2 text-sm rounded-lg font-bold hover:bg-red-700'>Reject</button>
+                <button onClick={() => updateTaskStatus(loggedUser.email, data.taskTitle, 'active')} className='bg-green-600 w-full py-2.5 text-xs rounded-lg font-bold hover:bg-green-700 shadow-md'>Accept Task</button>
+                <button onClick={() => updateTaskStatus(loggedUser.email, data.taskTitle, 'failed')} className='bg-red-600 w-full py-2.5 text-xs rounded-lg font-bold hover:bg-red-700 shadow-md'>Reject Task</button>
             </div>
         </div>
     )
 }
-
 export default NewTask

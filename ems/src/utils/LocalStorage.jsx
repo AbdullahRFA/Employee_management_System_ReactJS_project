@@ -226,16 +226,18 @@ const admin = [{
 ];
 
 
-export const setLocalStorage = ()=>{
-    localStorage.setItem("employees", JSON.stringify(employee))
-    localStorage.setItem("admins", JSON.stringify(admin))
-
+export const setLocalStorage = () => {
+    // ONLY set data if it doesn't already exist in LocalStorage
+    if (!localStorage.getItem("employees")) {
+        localStorage.setItem("employees", JSON.stringify(employee));
+    }
+    if (!localStorage.getItem("admins")) {
+        localStorage.setItem("admins", JSON.stringify(admin));
+    }
 }
-export const getLocalStorage = ()=>{
+
+export const getLocalStorage = () => {
     const employees = JSON.parse(localStorage.getItem("employees"))
     const admins = JSON.parse(localStorage.getItem("admins"))
-    // console.log(admins,employees)
-
-    return {employees, admins}
-
+    return { employees, admins }
 }
