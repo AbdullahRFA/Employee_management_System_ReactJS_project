@@ -54,7 +54,7 @@ The `LocalStorage.jsx` utility includes a "safe seeding" mechanism. It ensures t
 
 | Admin Dashboard | Employee Dashboard | 
 |:---:|:---:|
-| <img src="/ems/src/assets/ss/Screenshot 2026-02-16 at 11.13.16 PM.png" width="350"> | <img src="/ems/src/assets/ss/Screenshot 2026-02-16 at 11.13.49 PM.png" width="350"> |
+| <img src="/ems/src/assets/ss/Screenshot 2026-02-16 at 11.13.16 PM.png" width="400"> | <img src="/ems/src/assets/ss/Screenshot 2026-02-16 at 11.13.49 PM.png" width="400"> |
 
 ## 📂 Project Structure
 
