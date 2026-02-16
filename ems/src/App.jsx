@@ -18,6 +18,11 @@ function App() {
     }
   }, []) // Empty dependency array ensures this runs once on mount
 
+  const handleLogOut=()=>{
+      setUser(null)
+      localStorage.removeItem("loggedInUser")
+  };
+
   const handleLogin = (email, password) => {
     if (authdata) {
       // 2. Fix: Check for Admin and set state/localStorage ONLY if found
@@ -45,8 +50,8 @@ function App() {
   return (
     <>
       {!user && <Login handleLogin={handleLogin} />}
-      {user === "Admin" && <AdminDashboard />}
-      {user === "Employee" && <EmployeDashboard />}
+      {user === "Admin" && <AdminDashboard handleLogOut={handleLogOut}/>}
+      {user === "Employee" && <EmployeDashboard  handleLogOut={handleLogOut}/>}
     </>
   )
 }
