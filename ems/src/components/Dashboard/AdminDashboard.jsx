@@ -2,12 +2,12 @@ import Header from "../Others/Header"
 import CreateTask from "../Others/CreateTask"
 import AllTask from "../Others/AllTask"
 
-function AdminDashboard({handleLogOut}) {
+function AdminDashboard({ handleLogOut, loggedUser }) {
     return (
         <div className="h-screen w-full bg-[#1c1c1c] p-10">
-            <Header handleLogOut={handleLogOut}/>
+            <Header handleLogOut={handleLogOut} loggedUser={loggedUser} />
             <CreateTask />
-            <AllTask/>
+            <AllTask />
         </div>
     )
 }
