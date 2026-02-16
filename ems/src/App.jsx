@@ -5,18 +5,26 @@ import AdminDashboard from "./components/Dashboard/AdminDashboard"
 import { AuthContext } from './context/AuthProvider'
 
 function App() {
-  const [userData, setUserData] = useContext(AuthContext); // Destructure correctly
+  const [userData, setUserData] = useContext(AuthContext);
   const [user, setUser] = useState(null);
   const [loggedUser, setLoggedUser] = useState(null);
 
+  // Sync loggedUser with userData whenever global state updates
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser");
-    if (loggedInUser) {
-      const userDataParsed = JSON.parse(loggedInUser);
-      setUser(userDataParsed.role);
-      setLoggedUser(userDataParsed.data);
+    if (loggedInUser && userData) {
+      const parsedUser = JSON.parse(loggedInUser);
+      setUser(parsedUser.role);
+      
+      // If employee, find their latest data from userData
+      if (parsedUser.role === 'Employee') {
+        const updatedEmployee = userData.employees.find(e => e.email === parsedUser.data.email);
+        setLoggedUser(updatedEmployee);
+      } else {
+        setLoggedUser(parsedUser.data);
+      }
     }
-  }, []);
+  }, [userData]); // Dependency on userData ensures UI updates globally
 
   const handleLogOut = () => {
     setUser(null);
