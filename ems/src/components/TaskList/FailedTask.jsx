@@ -2,13 +2,13 @@ const FailedTask = ({data}) => {
     return (
         <div className='flex-shrink-0 h-full w-[300px] p-5 bg-red-400 rounded-xl'>
             <div className='flex justify-between items-center'>
-                <span className='bg-red-600 text-sm px-3 py-1 rounded'>{data.category}</span>
-                <h4 className='text-sm'>{data.taskDate}</h4>
+                <span className='bg-red-600 text-sm px-3 py-1 rounded font-bold'>{data.category}</span>
+                <h4 className='text-sm font-semibold'>{data.taskDate}</h4>
             </div>
-            <h2 className='mt-5 text-2xl font-semibold'>{data.taskTitle}</h2>
-            <p className='text-sm mt-2'>{data.taskDescription}</p>
+            <h2 className='mt-5 text-2xl font-bold'>{data.taskTitle}</h2>
+            <p className='text-sm mt-2 leading-tight h-24 overflow-auto'>{data.taskDescription}</p>
             <div className='mt-4'>
-                <button className='w-full bg-red-600 py-1 text-sm rounded'>Failed</button>
+                <button className='w-full bg-red-600 py-2 text-sm rounded-lg font-bold cursor-default'>Failed ❌</button>
             </div>
         </div>
     )

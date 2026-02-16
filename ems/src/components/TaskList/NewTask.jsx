@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../context/AuthProvider'
 
-const NewTask = ({data, loggedUser}) => {
+const NewTask = ({ data, loggedUser }) => {
     const [userData, setUserData] = useContext(AuthContext)
 
     const updateStatus = (status) => {
@@ -18,6 +18,7 @@ const NewTask = ({data, loggedUser}) => {
             }
             return emp;
         });
+
         setUserData({ ...userData, employees: updatedEmployees });
         localStorage.setItem('employees', JSON.stringify(updatedEmployees));
     }
@@ -37,4 +38,5 @@ const NewTask = ({data, loggedUser}) => {
         </div>
     )
 }
+
 export default NewTask
